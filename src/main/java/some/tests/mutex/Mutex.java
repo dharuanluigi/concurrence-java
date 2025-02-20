@@ -6,6 +6,17 @@ public class Mutex {
   private boolean isLocked = false;
 
   public void lock() {
+    final int loopsLimit = 254;
+
+    for (int i = 0; i < loopsLimit; i++) {
+      Thread.onSpinWait();
+
+      if (!this.isLocked) {
+        this.isLocked = true;
+        return;
+      }
+    }
+
     synchronized (this.monitor) {
       while (this.isLocked) {
         try {
