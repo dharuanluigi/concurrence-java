@@ -10,6 +10,8 @@ public class DeficientMutex {
         isLocked = true;
         return;
       }
+
+      Thread.onSpinWait();
     }
   }
 
