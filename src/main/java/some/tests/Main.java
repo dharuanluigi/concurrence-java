@@ -1,10 +1,10 @@
 package some.tests;
 
-import some.tests.mutex.DeficientMutex;
+import some.tests.mutex.Mutex;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
-    var mutex = new DeficientMutex();
+    var mutex = new Mutex();
 
     var th1 =
         new Thread(
@@ -12,7 +12,7 @@ public class Main {
               mutex.lock();
               try {
                 System.out.println("Thread 1 get lock");
-                Thread.sleep(10000);
+                Thread.sleep(1000);
                 System.out.println("Thread 1 leaves the lock");
               } catch (Exception e) {
                 System.out.println(e.getMessage());
